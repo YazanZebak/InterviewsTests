@@ -1,0 +1,24 @@
+<mat-card class="example-card">
+    <mat-card-header>
+
+      <mat-progress-bar mode="query" *ngIf="loadingIndecator"></mat-progress-bar>
+
+
+      <div mat-card-avatar class="example-header-image"
+           [style.background-image]="'url(' + user.avatar + ')'"
+      ></div>
+      <mat-card-title>{{user.first_name + " " + user.last_name}}</mat-card-title>
+      <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="user?.avatar" alt="Profile Photo" *ngIf="!loadingIndecator">
+    <mat-card-content>
+      <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit eaque maiores nobis? 
+          Voluptate illum pariatur cumque laborum beatae animi rerum impedit amet,
+        quis saepe voluptatem! Molestiae impedit nulla quam ex?
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="warn" (click)="onBack()">Back</button>
+    </mat-card-actions>
+  </mat-card>

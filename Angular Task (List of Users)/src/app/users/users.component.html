@@ -1,0 +1,73 @@
+<div class="mat-elevation-z8 center">
+  <mat-form-field appearance="fill" style="align-self: flex-start; width: 32%">
+    <mat-label>Filter By ID</mat-label>
+    <input matInput placeholder="232" [formControl]="filterControl" />
+  </mat-form-field>
+
+  <mat-progress-bar mode="query" *ngIf="loadingIndecator"></mat-progress-bar>
+
+  <mat-table [dataSource]="dataSource" style="width: 100%">
+   
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="avatar">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element"
+        ><img [src]="element.avatar"
+      /></mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="first_name">
+      <mat-header-cell mat-header-cell *matHeaderCellDef
+        >First Name</mat-header-cell
+      >
+      <mat-cell mat-cell *matCellDef="let element">{{
+        element.first_name
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="last_name">
+      <mat-header-cell mat-header-cell *matHeaderCellDef
+        >Last Name</mat-header-cell
+      >
+      <mat-cell mat-cell *matCellDef="let element">{{
+        element.last_name
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element">{{
+        element.email
+      }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      *matHeaderRowDef="displayedColumns; sticky: true"
+    ></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="onClickUser(row)"
+      style="cursor: pointer"
+    ></mat-row>
+  </mat-table>
+
+  <ng-container  *ngIf="noData">
+    <div class="noData">No Data Has Been Found</div>
+  </ng-container>
+ 
+
+  <mat-paginator
+    (page)="onPaginatorChange($event)"
+    [pageSizeOptions]="[1, 2, 5, 10, 20]"
+    [pageSize]="per_page"
+    [pageIndex]="page - 1"
+    [length]="total"
+    aria-label="Select page of users"
+  >
+  </mat-paginator>
+</div>
